@@ -13,8 +13,7 @@ public class A1Novice
 		String output = "";
 		int numberOfCustomers;
 		
-		//Ask for total number of customers and record value
-		System.out.print("Enter total number of customers >> ");
+		//Record total number of customers
 		numberOfCustomers = input.nextInt();
 		
 		//This loop runs for each customer and records their shopping data.
@@ -29,11 +28,8 @@ public class A1Novice
 			double totalPrice = 0;
 
 			//Three readings from the console to determine first and last name as well as number of items
-			System.out.print("Enter first name of customer " + x + " >> ");
 			firstName = input.next();
-			System.out.print("Enter last name of customer " + x + " >> ");
 			lastName = input.next();
-			System.out.print("Enter number of items bought by customer " + x + " >> ");
 			numberOfItems = input.nextInt();
 			
 			//This loop runs for each item the customer is buying and records it price.
@@ -48,11 +44,8 @@ public class A1Novice
 				double itemPrice;
 				
 				//Record the amount of item, name of item, and price of item bought.
-				System.out.print("Enter amount of item " + y + " bought >> ");
 				quantityOfItem = input.nextInt();
-				System.out.print("Enter name of item " + y + " >> ");
 				itemName = input.next();
-				System.out.print("Enter price of item " + y + " (per item) >> ");
 				itemPrice = input.nextDouble();
 				
 				//Accumulate the total price of the order by adding the price of each item after the loop.
