@@ -8,13 +8,14 @@ public class A1Jedi
 	{
 		//Create our scanner and necessary outside variables:
 		//A set of parallel arrays to keep track of each item, its price, how many people have bought it,
-		//and how many have been bought
+		//how many have been bought, and whether that customer has already purchased that object
 		//A variable to hold number of items in store (size of arrays)
 		//Number of customers for the loop to cycle through
 		Scanner input = new Scanner(System.in);
 		String[] itemNames;
 		double[] itemPrices;
 		int[] amountOfBuyers, numBought;
+		boolean[] alreadyPurchased;
 		int numOfItemsInStore, numOfCustomers;
 		
 		//Record number of items in the store, and create arrays to hold data on each item
@@ -23,6 +24,7 @@ public class A1Jedi
 		itemPrices = new double[numOfItemsInStore];
 		amountOfBuyers = new int[numOfItemsInStore];
 		numBought = new int[numOfItemsInStore];
+		alreadyPurchased = new boolean[numOfItemsInStore];
 		
 		//Initialize the arrays with the name and price of each item, OR to 0 (for easy incrementing later on)
 		for(int x = 0; x < numOfItemsInStore; ++x)
@@ -43,6 +45,12 @@ public class A1Jedi
 			//Variables to hold name of customer
 			int numItemsBought;
 			String firstName, lastName;
+			
+			//Resets the "already purchased" flag for the new customer
+			for(int c = 0; c < numOfItemsInStore; ++c)
+			{
+				alreadyPurchased[c] = false;
+			}
 			
 			//Record name and number of items bought
 			firstName = input.next();
@@ -67,7 +75,14 @@ public class A1Jedi
 				{
 					if(itemNames[a].equals(nameOfItem))
 					{
-						amountOfBuyers[a] += 1;
+						//If this customer has already purchased this item, a new buyer will not be counted
+						//but the purchase will still be honored. If the customer has not already purchased
+						//this item, a new buyer will be counted and they will be flag as having already purchased
+						if(!alreadyPurchased[a])
+						{
+							amountOfBuyers[a] += 1;
+							alreadyPurchased[a] = true;
+						}
 						numBought[a] += quantityOfItem;
 					}
 				}
